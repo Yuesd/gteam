@@ -1,0 +1,9 @@
+package com.cqut.dao;
+
+import com.cqut.dao.model.Order;
+
+public interface SalesMapper {
+
+	void addOrder(Order order);
+
+}

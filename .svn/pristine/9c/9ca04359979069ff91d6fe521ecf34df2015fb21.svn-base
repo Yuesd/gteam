@@ -1,0 +1,21 @@
+package com.cqut.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cqut.dao.SalesMapper;
+import com.cqut.dao.model.Order;
+
+@Service
+public class SalesService {
+	
+    @Autowired
+    private SalesMapper salesMapper;
+
+	public void addOrder(Order order) {
+		// TODO Auto-generated method stub
+		salesMapper.addOrder(order);
+	}
+    
+	
+}

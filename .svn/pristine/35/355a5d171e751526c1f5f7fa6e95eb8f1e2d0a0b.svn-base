@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!--namespace是对应的mapper接口文件  -->
+<mapper namespace="com.cqut.dao.DealrecordMapper" >
+
+  <insert id="addDealrecord" parameterType="com.cqut.dao.model.Dealrecord">
+  	insert into contact_record(cusNo,crDate,crAddress,crOutline,crInfo,crRemark)
+  	 values(#{cusNo}, #{crDate},#{crAddress},#{crOutline},#{crInfo},#{crRemark})
+  </insert>
+  
+    <select id="selectALLDealrecord" resultType="com.cqut.dao.model.Dealrecord">
+     select * from contact_record where cusNo=#{cusNo}
+  </select> 
+
+
+  <delete id="deleteDealrecord">
+      delete from contact_record where crId=#{crId}
+  </delete>
+
+</mapper>

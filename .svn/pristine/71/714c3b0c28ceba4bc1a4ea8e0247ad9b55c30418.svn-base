@@ -1,0 +1,24 @@
+package com.cqut.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cqut.dao.CustomerMapper;
+import com.cqut.dao.HistoryMapper;
+import com.cqut.dao.model.History;
+
+@Service
+public class Historyservice {
+	@Autowired //必不可少
+	private HistoryMapper historyMapper;
+
+	public List<History> getAllHistory(){
+		return historyMapper.selectAllHistory();
+	}
+	
+	public List<History> searchHistory(History his){
+		return historyMapper.selectsearchHistory();
+	}
+}

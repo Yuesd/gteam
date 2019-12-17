@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- namespace是对应的mapper接口文件 -->
+<mapper namespace="com.cqut.dao.ServiceMapper" >
+
+  
+   <insert id="insertService" parameterType="com.cqut.dao.model.Servicett">
+  	insert into service(cusNo,serName,serGender,serPhone,serType,serMemo,matching,serDate)
+  	 values(#{cusNo},#{serName},#{serGender},#{serPhone},#{serType},#{serMemo},#{matching},#{serDate})
+  </insert>
+  
+  <select id="selectAllService" resultType="com.cqut.dao.model.Servicett">
+  	select * from service
+  </select>
+  
+  <delete id="deleteService">
+  	delete from service where serId=#{serId}
+  </delete>
+  
+  <update id="updateService" parameterType="com.cqut.dao.model.Servicett">
+     update service set cusNo=#{cusNo},serName=#{serName},serGender=#{serGender},
+     serPhone=#{serPhone},serMemo=#{serMemo},matching=#{matching},sserDate=#{sserDate}
+     where serId=#{serId}
+  </update>
+  
+  <!-- -
+  <update id="upService" parameterType="com.cqut.dao.model.Servicett">
+     update service set cusNo=#{cusNo},serName=#{serName},serGender=#{serGender},
+     serPhone=#{serPhone},serType=#{serType},serMemo=#{serMemo},matching=#{matching},serDate=#{serDate}
+     where serId=#{serId}
+  </update>
+  
+  
+   --> 
+
+</mapper>

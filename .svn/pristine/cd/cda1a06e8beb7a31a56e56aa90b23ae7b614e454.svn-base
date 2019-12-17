@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- namespace是对应的mapper接口文件 -->
+<mapper namespace="com.cqut.dao.HistoryMapper" >
+  
+  <select id="selectAllHistory" resultType="com.cqut.dao.model.History">
+  select * from ordera
+  </select>
+  
+  <select id="selectsearchHistory" resultType="com.cqut.dao.model.History">
+  select * from ordera where cusId=#{cusId}
+  </select>
+   
+</mapper>

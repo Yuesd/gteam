@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cqut.dao.SalesMapper" >
+  <!-- 	private int orderId;
+	private int cusId;
+	private int productNum;
+	private String productName;
+	private String productPrice;
+	private String productDiscount;
+	private String orderAmount;
+	private String orderDate; -->
+   <insert id="addOrder" parameterType="com.cqut.dao.model.Order">
+      insert into ordera(cusId,productName,productPrice,productDiscount,productNum,orderAmount,orderDate) 
+      values(#{cusId},#{productName},#{productPrice},#{productDiscount},#{productNum},#{orderAmount},#{orderDate})  
+   </insert>
+    
+</mapper>

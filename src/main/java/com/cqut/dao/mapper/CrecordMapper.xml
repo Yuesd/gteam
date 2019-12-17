@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- namespace是对应的mapper接口文件 -->
+<mapper namespace="com.cqut.dao.CrecordMapper" >
+ 
+  <select id="selectman" resultType="com.cqut.dao.model.Crecord">
+  	select manId,manName from man
+  </select>
+  
+  <select id="selectcus" resultType="com.cqut.dao.model.Crecord">
+  	select cusId,cusName from customer
+  </select>
+  
+   <select id="selectallcontact" resultType="com.cqut.dao.model.Crecord">
+  	select recordId,cm.cusId,c.cusName,cm.manId,m.manName 
+  	from cus_man as cm 
+  	inner join customer as c on cm.cusId=c.cusId
+  	inner join man as m on cm.manId=m.manId
+  </select>
+  
+  <select id="selectrecord" resultType="com.cqut.dao.model.Crecord">
+  	select Id,datetime,record from record where recordId=#{recordId}
+  </select>
+  
+	<insert id="insertman" parameterType="com.cqut.dao.model.Crecord">
+  	insert into man(manId,manName)
+  	values(#{manId},#{manName})
+  </insert>
+  
+	<insert id="insertcontact" parameterType="com.cqut.dao.model.Crecord">
+  	insert into cus_man(manId,cusId)
+  	values(#{manId},#{cusId})
+  </insert>
+  
+  <insert id="insertrecord" parameterType="com.cqut.dao.model.Crecord">
+  	insert into record(recordId,datetime,record)
+  	values(#{recordId},#{datetime},#{record})
+  </insert>
+  
+  <delete id="deletecontact">
+  	delete from cus_man where recordId=#{recordId}
+  </delete>
+  
+  <delete id="deleterecord">
+  	delete from record where Id=#{Id}
+  </delete>
+</mapper>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- namespace是对应的mapper接口文件 -->
+<mapper namespace="com.cqut.dao.ContactMapper" >
+  
+  <insert id="addContact" parameterType="com.cqut.dao.model.Contact">
+  	insert into contact(ctName,ctGender,ctPhone,ctTitle,ctMemo,cusNo)
+  	 values(#{ctName}, #{ctGender},#{ctPhone},#{ctTitle},#{ctMemo},#{cusNo})
+  </insert>
+  <select id="selectAllContact" resultType="com.cqut.dao.model.Contact">
+  select * from contact where cusNo=#{cusNo}
+  </select>
+   <delete id="deleteContact">
+  		delete from contact where ctId=#{ctId}
+  </delete>
+ 
+</mapper>

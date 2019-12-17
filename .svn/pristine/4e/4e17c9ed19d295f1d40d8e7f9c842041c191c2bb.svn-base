@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- namespace是对应的mapper接口文件 -->
+<mapper namespace="com.cqut.dao.CustomerMapper" >
+  <insert id="insertCustomer" parameterType="com.cqut.dao.model.Customer">
+  	insert into customer(cusNo,cusName,cusRegion,cusAddr,cusUrl,cusLevel,cusCredit)
+  	 values(#{cusNo}, #{cusName},#{cusRegion},#{cusAddr},#{cusUrl},#{cusLevel},#{cusCredit})
+  </insert>
+  
+  <select id="selectAllCustomer" resultType="com.cqut.dao.model.Customer">
+  	select * from customer
+  </select>
+    <delete id="deleteCustomer">
+  	delete from customer where cusId=#{cusId}
+  </delete>
+     <update id="updateCustomer" parameterType="com.cqut.dao.model.Customer">
+     update customer set cusNo=#{cusNo},cusName=#{cusName},cusRegion=#{cusRegion},
+     cusAddr=#{cusAddr},cusUrl=#{cusUrl},cusLevel=#{cusLevel},cusCredit=#{cusCredit} 
+     where cusId=#{cusId}
+  </update>
+  <select id="selectCustomerRegion" resultType="com.cqut.dao.model.CustomerRegion"> 
+   select  cusRegion, count(*)as cusCount from customer group by cusRegion
+  </select>
+  
+
+  <select id="selectCustomergive" resultType="map"> 
+     select  customer.cusName , ordera.cusId, sum(orderAmount) AS orderAmounta from ordera  join customer on customer.cusId=ordera.cusId  group by cusId
+  </select>
+
+  <select id="selectCustomerfb" resultType="map"> 
+select cusLevel ,  count(*)as cusRegion   from customer group by cusRegion
+  </select>
+
+  <select id="selectCustomerCuslevel"  resultType="com.cqut.dao.model.CustomerConstitute" >
+      select cusLevel,count(*) as countNum from customer group by cusLevel
+  </select>
+</mapper>

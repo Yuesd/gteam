@@ -1,0 +1,89 @@
+package com.cqut.controller;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cqut.dao.model.Order;
+import com.cqut.service.SalesService;
+
+@RestController
+@CrossOrigin
+@RequestMapping("/sales")
+public class SalesController {
+	
+	@Autowired
+	private SalesService salesServuce;
+	
+	@RequestMapping("/addAmount")	
+	public List<Order> addAmount(Order order){
+		 Map<String ,Object> map=new HashMap<String, Object>();
+		 double amount=0;
+		 System.out.println("添加金额"+order);
+		  java.text.DecimalFormat myformat=new java.text.DecimalFormat("#0.00");		  
+		  double discount=Double.parseDouble(order.getProductDiscount());
+		  double price=Double.parseDouble(order.getProductPrice());
+		  
+		  discount=Double.parseDouble(myformat.format(discount));
+		  price=Double.parseDouble(myformat.format(price));  
+		  int num =order.getProductNum();
+		  amount=price*discount*num;	
+		  amount=Double.parseDouble(myformat.format(amount));
+		  
+		  java.util.Calendar c=java.util.Calendar.getInstance();   
+		  java.text.SimpleDateFormat f=new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+		  order.setOrderDate(f.format(c.getTime()));
+		  order.setOrderAmount(String.valueOf(amount));  
+		  order.setOrderDate(f.format(c.getTime()));
+		  order.setOrderAmount(String.valueOf(amount)); 
+		  System.out.println("添加金额122--------"+order);
+		  List<Order> list=new ArrayList<Order>();
+		  list.add(order);
+		 return list;
+	}
+	
+	
+	@RequestMapping("/addOrder")
+	public Map<String ,Object> addOrder(Order order ){
+		 Map<String ,Object> map=new HashMap<String, Object>();
+		  double amount=0;
+		 // System.out.println();
+		  //金额=价格*数量*折扣；
+		//  double discount=new Double(order.getProductDiscount()).intValue();
+		//  double price=new Double(order.getProductPrice()).intValue();
+		  java.text.DecimalFormat myformat=new java.text.DecimalFormat("#0.00");		  
+		  double discount=Double.parseDouble(order.getProductDiscount());
+		  double price=Double.parseDouble(order.getProductPrice());
+		  
+		  discount=Double.parseDouble(myformat.format(discount));
+		  price=Double.parseDouble(myformat.format(price));  
+		  int num =order.getProductNum();
+		  System.out.println("数量 "+num);
+		  System.out.println("折扣"+order.getProductDiscount());
+		  System.out.println("折扣改  "+discount);
+		  System.out.println("价格 "+price);
+  
+		  amount=price*discount*num;	
+		  System.out.println(amount);
+		  amount=Double.parseDouble(myformat.format(amount));
+		  System.out.println("金额："+String.valueOf(amount));
+		  
+		  java.util.Calendar c=java.util.Calendar.getInstance();   
+		  java.text.SimpleDateFormat f=new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");  
+		  
+		  order.setOrderDate(f.format(c.getTime()));
+		  order.setOrderAmount(String.valueOf(amount));  
+		  
+		  System.out.println("____"+order);
+		  salesServuce.addOrder(order); 
+		  map.put("result", "交易成功!!!!!!!!!!!!!");
+		return map;
+	}
+
+}

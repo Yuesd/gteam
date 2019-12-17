@@ -1,0 +1,16 @@
+package com.cqut.dao;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.cqut.dao.model.CustomerRegion;
+import com.cqut.dao.model.History;
+
+public interface HistoryMapper {
+	
+ List<History> selectAllHistory();
+ 
+ public List<History> selectsearchHistory(History his);
+ 
+}
