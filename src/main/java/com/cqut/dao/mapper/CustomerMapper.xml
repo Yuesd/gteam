@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!-- namespace是对应的mapper接口文件 -->
+<mapper namespace="com.cqut.dao.CustomerMapper" >
+  <insert id="insertCustomer" parameterType="com.cqut.dao.model.Customer"><!-- 注册社员 -->
+  	insert into member(cusNo,cusName,cusRegion,cusAddr,cusPhone,cusLevel,cusCredit,cusTime)
+  	 values(#{cusNo}, #{cusName},#{cusRegion},#{cusAddr},#{cusPhone},#{cusLevel},#{cusCredit},#{cusTime})
+  </insert>
+  
+  <select id="selectAllCustomer" resultType="com.cqut.dao.model.Customer"><!-- 查询社员基本信息 -->
+  	select * from member
+  </select>
+
+  <select id="isId" resultType="com.cqut.dao.model.Customer">
+  	select * from member where cusNo=#{cusNo}
+  </select>
+
+    <delete id="deleteCustomer">
+  	delete from member where cusId=#{cusId}
+  </delete>
+  
+    <update id="updateCustomer" parameterType="com.cqut.dao.model.Customer"><!-- 根据ID修改社员基本信息 -->
+     update member set cusNo=#{cusNo},cusName=#{cusName},cusRegion=#{cusRegion},
+     cusAddr=#{cusAddr},cusPhone=#{cusPhone},cusLevel=#{cusLevel},cusCredit=#{cusCredit} 
+     where cusId=#{cusId}
+  </update>
+  
+  <select id="selectCustomerRegion" resultType="com.cqut.dao.model.CustomerRegion"> <!-- -各个部门的人数-->
+   select  cusRegion, count(*)as cusCount from member group by cusRegion
+  </select>
+  <select id= "getCustomerPosition"  resultType="com.cqut.dao.model.CustomerPosition"><!--  所属职务的人数-->
+  	select cusLevel,count(cusLevel)  as num from member  GROUP BY cusLevel
+  	</select>
+  <select id="selectCustomerfb" resultType="map"> 					<!-- customerFb.java -->
+<!--select cusLevel  ,  count(*)as  cusRegion   from customer group by cusRegion  -->
+select  cusRegion as cusLevel, count(*)as cusCount from member group by cusRegion
+
+  </select>
+  <select id="selectCustomerCuslevel"  resultType="com.cqut.dao.model.CustomerConstitute" >   <!-- getCustomerCusLevel 获取社员的地址 -->
+  select MemberAddress as cusLevel,count(cusName) as countNum from cus_member group by MemberAddress
+  </select>
+</mapper>

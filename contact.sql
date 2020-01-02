@@ -1,0 +1,11 @@
+INSERT INTO `contact` VALUES (8, '韦安民', '同学', '女', '15723140000', '一个班级', '王令');
+INSERT INTO `contact` VALUES (9, '李跃', '同学', '男', '12354564411', '一个班级', '王令');
+INSERT INTO `contact` VALUES (20, '何勇', '父子', '男', '15213497869', '亲人', '王令');
+INSERT INTO `contact` VALUES (21, '张晓', '母女', '女', '15213497869', '亲人', '王令');
+INSERT INTO `contact` VALUES (26, '张舒', '母子', '女', '15213497869', '母亲', '何欣');
+INSERT INTO `contact` VALUES (24, '龚经济', '父子', '男', '15213497869', '本人在重庆', '龚松');
+INSERT INTO `contact` VALUES (25, '张笑天', '同学', '男', '15213497869', '一个班级', '龚松');
+INSERT INTO `contact` VALUES (28, '樊西娜', '同学', '女', '15213497869', '室友', '谭芙蓉');
+INSERT INTO `contact` VALUES (29, '何光耀', '同学', '男', '15223133971', '同班同学', '蒋妮');
+INSERT INTO `contact` VALUES (30, '官丽云', '父子', '男', '15523229210', '父亲', '官威杰');
+INSERT INTO `contact` VALUES (31, '李越', '同学', '女', '1572314088', '一个班级', '何欣');
